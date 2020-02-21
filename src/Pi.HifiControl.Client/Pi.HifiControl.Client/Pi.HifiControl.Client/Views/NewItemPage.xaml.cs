@@ -21,8 +21,6 @@ namespace Pi.HifiControl.Client.Views
 
             Item = new Item
             {
-                Text = "Item name",
-                Description = "This is an item description."
             };
 
             BindingContext = this;

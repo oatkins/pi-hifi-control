@@ -9,7 +9,7 @@ namespace Pi.HifiControl.Client.ViewModels
         public Item Item { get; set; }
         public ItemDetailViewModel(Item item = null)
         {
-            Title = item?.Text;
+            Title = "Fish";
             Item = item;
         }
     }
