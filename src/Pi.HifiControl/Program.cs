@@ -24,7 +24,7 @@ namespace Pi.HifiControl
 
                 if (args.Contains("--wait"))
                 {
-                    string q;
+                    string? q;
                     do
                     {
                         q = Console.ReadLine();
@@ -34,7 +34,7 @@ namespace Pi.HifiControl
             }
             else
             {
-                string s = Console.ReadLine();
+                string? s = Console.ReadLine();
                 while (!string.IsNullOrEmpty(s))
                 {
                     HandleCommands(communicator, amp, s.Split(" "));

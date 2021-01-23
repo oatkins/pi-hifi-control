@@ -26,12 +26,14 @@ namespace Pi.HifiControl
     public class CambridgeCX81 : IDisposable, INotifyPropertyChanged
     {
         private readonly ICommunicator _communicator;
-        private readonly CompositeDisposable _disposable = new CompositeDisposable();
+        private readonly CompositeDisposable _disposable = new();
         private readonly ILogger _logger;
 
         private bool _power;
         private bool _mute;
         private AudioSource _source;
+
+        private bool _disposed;
 
         public CambridgeCX81(ICommunicator communicator, ILogger logger)
         {
@@ -51,7 +53,7 @@ namespace Pi.HifiControl
             _communicator.Send(new Message(3, 1));
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public bool IsPoweredOn { get => _power; private set => SetProperty(ref _power, value); }
 
@@ -71,8 +73,16 @@ namespace Pi.HifiControl
 
         public void Dispose()
         {
+            if (_disposed)
+            {
+                return;
+            }
+
+            _disposed = true;
             _communicator.Dispose();
             _disposable.Dispose();
+
+            GC.SuppressFinalize(this);
         }
 
         private void Handle(Message message)
@@ -120,8 +130,12 @@ namespace Pi.HifiControl
                     switch (message.CommandNumber)
                     {
                         case 1:
-                            Source = (AudioSource)int.Parse(message.CommandData);
-                            _logger.Information("Source changed to {Source}", Source);
+                            if(int.TryParse(message.CommandData, out var newSource))
+                            {
+                                Source = (AudioSource)newSource;
+                                _logger.Information("Source changed to {Source}", Source);
+                            }
+
                             break;
                     }
 
@@ -133,7 +147,7 @@ namespace Pi.HifiControl
             }
         }
 
-        private bool SetProperty<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        private bool SetProperty<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
         {
             if (!EqualityComparer<T>.Default.Equals(field, value))
             {

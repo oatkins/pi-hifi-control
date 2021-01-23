@@ -3,16 +3,9 @@ using static System.FormattableString;
 
 namespace Pi.HifiControl.Comms
 {
-    public sealed class Message
+    public sealed record Message(int CommandGroup, int CommandNumber, string? CommandData = null)
     {
-        public Message(int commandGroup, int commandNumber, string commandData = null)
-        {
-            this.CommandGroup = commandGroup;
-            this.CommandNumber = commandNumber;
-            this.CommandData = commandData;
-        }
-
-        public static Message TryParse(string messageText)
+        public static Message? TryParse(string messageText)
         {
             var m = Regex.Match(messageText, @"^\#(?<group>\d+),(?<command>\d+)(,(?<data>.+))?$");
             if (m.Success)
@@ -22,12 +15,6 @@ namespace Pi.HifiControl.Comms
 
             return null;
         }
-
-        public int CommandGroup { get; }
-
-        public int CommandNumber { get; }
-
-        public string CommandData { get; }
 
         public override string ToString() => 
             string.IsNullOrEmpty(CommandData) 
