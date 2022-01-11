@@ -1,6 +1,8 @@
 ﻿using Pi.HifiControl.Comms;
 using Serilog;
+using Serilog.Core;
 using Serilog.Events;
+using System.Diagnostics;
 
 namespace Pi.HifiControl;
 
@@ -10,7 +12,8 @@ class Program
     {
         Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Verbose()
-            .WriteTo.Console(LogEventLevel.Verbose)
+            .Enrich.With(new ElapsedTimeEnricher())
+            .WriteTo.Console(LogEventLevel.Verbose, outputTemplate: @"[{Timestamp:HH:mm:ss}, {ProcessTime:hh\:mm\:ss\.ff} {Level:u3}] {Message:lj}{NewLine}{Exception}")
             .CreateLogger();
 
         using var communicator = new SerialCommunicator();
@@ -73,5 +76,16 @@ class Program
                     break;
             }
         }
+    }
+}
+
+internal class ElapsedTimeEnricher : ILogEventEnricher
+{
+    private readonly DateTime _startTime = Process.GetCurrentProcess().StartTime;
+
+    public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
+    {
+        logEvent.AddPropertyIfAbsent(
+            propertyFactory.CreateProperty("ProcessTime", DateTime.Now - _startTime));
     }
 }
