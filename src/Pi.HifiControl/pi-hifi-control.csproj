@@ -17,4 +17,12 @@
     <PackageReference Include="System.Reactive" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\src\pi-hifi-control\src\Pi.HifiControl\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\src\pi-hifi-control\src\Pi.HifiControl\.editorconfig" />
+  </ItemGroup>
+
 </Project>
