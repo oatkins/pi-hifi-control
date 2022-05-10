@@ -1,0 +1,6 @@
+[submodule "RaspberryIRBlaster"]
+	path = RaspberryIRBlaster
+	url = https://github.com/davidrpalmer/RaspberryIRBlaster.git
+[submodule "src/RaspberryIRDotNet"]
+	path = src/RaspberryIRDotNet
+	url = https://github.com/davidrpalmer/RaspberryIRDotNet.git

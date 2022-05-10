@@ -17,7 +17,8 @@ class Program
             .CreateLogger();
 
         using var communicator = new SerialCommunicator();
-        using var amp = new CambridgeCX81(communicator, Log.Logger);
+        using var irCommunicator = new IRCommunicator();
+        using var amp = new CambridgeCX81(communicator, irCommunicator, Log.Logger);
 
         if (args?.Length > 0)
         {
@@ -65,7 +66,13 @@ class Program
                     amp.Unmute();
                     break;
                 case "source" when args.Length > 1:
-                    amp.SetSource(Enum.Parse<AudioSource>(args[1]));
+                    amp.SetSource(Enum.Parse<AudioSource>(args[1].Replace("Analogue", "Analog")));
+                    break;
+                case "up":
+                    amp.VolumeUp();
+                    break;
+                case "down":
+                    amp.VolumeDown();
                     break;
                 default:
                     if (args.Length == 1)

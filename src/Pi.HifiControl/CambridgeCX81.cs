@@ -24,6 +24,7 @@ public enum AudioSource
 public class CambridgeCX81 : IDisposable, INotifyPropertyChanged
 {
     private readonly ICommunicator _communicator;
+    private readonly IRCommunicator _irCommunicator;
     private readonly CompositeDisposable _disposable = new();
     private readonly ILogger _logger;
 
@@ -33,10 +34,10 @@ public class CambridgeCX81 : IDisposable, INotifyPropertyChanged
 
     private bool _disposed;
 
-    public CambridgeCX81(ICommunicator communicator, ILogger logger)
+    public CambridgeCX81(ICommunicator communicator, IRCommunicator irCommunicator, ILogger logger)
     {
         _communicator = communicator;
-
+        _irCommunicator = irCommunicator;
         _disposable.Add(_communicator.ObservedMessages.Subscribe(m => this.Handle(m)));
 
         _logger = logger.ForContext<CambridgeCX81>();
@@ -68,6 +69,10 @@ public class CambridgeCX81 : IDisposable, INotifyPropertyChanged
     public void Unmute() => _communicator.Send(new Message(1, 4, "0"));
 
     public void SetSource(AudioSource source) => _communicator.Send(new Message(3, 4, ((int)source).ToString(CultureInfo.InvariantCulture)));
+
+    public void VolumeDown() => _irCommunicator.Send(IRCommunicatorCode.VolumeDown);
+
+    public void VolumeUp() => _irCommunicator.Send(IRCommunicatorCode.VolumeUp);
 
     public void Dispose()
     {

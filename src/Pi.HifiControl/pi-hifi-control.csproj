@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="C:\src\pi-hifi-control\src\Pi.HifiControl\.editorconfig" />
+    <ProjectReference Include="..\RaspberryIRDotNet\RaspberryIRDotNet\RaspberryIRDotNet.csproj" />
   </ItemGroup>
 
 </Project>
