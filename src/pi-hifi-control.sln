@@ -1,4 +1,3 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32104.313
@@ -15,6 +14,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaspberryIRDotNet", "RaspberryIRDotNet\RaspberryIRDotNet\RaspberryIRDotNet.csproj", "{B06C1AE8-AC53-407F-9003-DED6C7782D5B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pi.HifiControl.Blazor.Server", "Pi.HifiControl.Blazor\Server\Pi.HifiControl.Blazor.Server.csproj", "{3D1CBEFF-6BF4-4E56-BCD0-58DBC78670CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pi.HifiControl.Blazor.Client", "Pi.HifiControl.Blazor\Client\Pi.HifiControl.Blazor.Client.csproj", "{8F6802BE-74D1-4EB2-BBAA-689A8263F553}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pi.HifiControl.Blazor.Shared", "Pi.HifiControl.Blazor\Shared\Pi.HifiControl.Blazor.Shared.csproj", "{59D15073-450D-4055-9F9B-CEFAFF473EB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +39,18 @@ Global
 		{B06C1AE8-AC53-407F-9003-DED6C7782D5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B06C1AE8-AC53-407F-9003-DED6C7782D5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B06C1AE8-AC53-407F-9003-DED6C7782D5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D1CBEFF-6BF4-4E56-BCD0-58DBC78670CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D1CBEFF-6BF4-4E56-BCD0-58DBC78670CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D1CBEFF-6BF4-4E56-BCD0-58DBC78670CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D1CBEFF-6BF4-4E56-BCD0-58DBC78670CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F6802BE-74D1-4EB2-BBAA-689A8263F553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F6802BE-74D1-4EB2-BBAA-689A8263F553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F6802BE-74D1-4EB2-BBAA-689A8263F553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F6802BE-74D1-4EB2-BBAA-689A8263F553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59D15073-450D-4055-9F9B-CEFAFF473EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59D15073-450D-4055-9F9B-CEFAFF473EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59D15073-450D-4055-9F9B-CEFAFF473EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59D15073-450D-4055-9F9B-CEFAFF473EB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

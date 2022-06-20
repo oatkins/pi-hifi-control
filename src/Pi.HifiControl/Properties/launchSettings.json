@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "pi-hifi-control": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
